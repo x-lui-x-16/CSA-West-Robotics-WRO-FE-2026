@@ -14,6 +14,7 @@ flowchart TD
     A --> F["📸 Team Photos"]
     A --> G["📹 Performance Videos"]
     A --> H["🤖🚗 Vehicle Pictures"]
+    A --> I["⚙️ Electromechanical Components"]
 
     B --> B1["3D models"]
     C --> C1["Miscellaneous files"]
@@ -21,7 +22,8 @@ flowchart TD
     E --> E1["Arduino code"]
     F --> F1["Official team photos"]
     G --> G1["Challenge videos"]
-    H --> H1["Robot & components"]
+    H --> H1["Robot images"]
+    I --> I1["Robot Components"]
 ```
 
 ### 🚀 Quick Access
@@ -33,6 +35,7 @@ flowchart TD
 - 📸 **Team Photos** → [Open Folder](t-photos/)
 - 📹 **Performance Videos** → [Open Folder](p-videos/)
 - 🤖🚗 **Vehicle Pictures** → [Open Folder](v-photos/)
+- ⚙️ **Electromechanical Components** → [Open Folder](elechtromechanical-components/)
 
 ## 🧰 Engineering Materiales
 All the materials used to create pur rpbot
