@@ -1,4 +1,4 @@
-# 🧊 3D Models
+# 🧊 Models
 This directory contains all the 3D models used in the robot.
 
 All files stored here correspond to parts designed for 3D printing and assembly of the robot structure. These models were created specifically for this project to ensure proper fit, modularity, and mechanical efficiency.
