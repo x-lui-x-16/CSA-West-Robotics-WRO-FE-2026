@@ -78,7 +78,7 @@ The WRO 2025 Future Engineers category invites teams to develop a fully autonomo
 
 During this stage, the robot is required to complete three full laps around the track. Since the layout includes randomly placed obstacles and changing conditions, the robot must continuously analyze its environment and adapt its navigation strategy in real time.
 
-####🚦 Obstacle Challenge:
+#### 🚦 Obstacle Challenge:
 In addition to navigating the course, the robot must recognize colored traffic markers placed at random positions along the track and react according to the competition rules:
 
 🟥 Red marker: The robot must pass on the right side.
