@@ -29,7 +29,7 @@ flowchart TD
 ### 🚀 Quick Access
 
 - 🧊 **Models** → [Open Folder](models/)
-- 📁 **Other** → [Open Folder](other/)
+- 📁 **Other** → [Open Folder](others/)
 - 🗺️ **Schemes** → [Open Folder](schemes/)
 - 💻 **Source Code** → [Open Folder](src/)
 - 📸 **Team Photos** → [Open Folder](t-photos/)
