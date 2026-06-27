@@ -35,7 +35,7 @@ flowchart TD
 - 📸 **Team Photos** → [Open Folder](t-photos/)
 - 📹 **Performance Videos** → [Open Folder](p-videos/)
 - 🤖🚗 **Vehicle Pictures** → [Open Folder](v-photos/)
-- ⚙️ **Electromechanical Components** → [Open Folder](elechtromechanical-components/)
+- ⚙️ **Electromechanical Components** → [Open Folder](electromechanical-components/)
 
 ## 🧰 Engineering Materiales
 All the materials used to create pur rpbot
