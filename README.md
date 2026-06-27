@@ -199,7 +199,7 @@ Specifications
 - Speed: 300 RPM
 - Encoder: No
 
-[📷 DC Motor](electromechanical-components/motors/dc-motor)
+[📷 DC Motor](electromechanical-components/motors/dc-motor/)
 
 #### Servo Motor
 The robot uses an MG996R high-torque servo motor to control the steering mechanism of the front wheels. Unlike differential-drive robots, our vehicle follows an Ackermann-inspired steering configuration, allowing it to perform smoother and more realistic turns while maintaining stability throughout the course.
@@ -214,7 +214,7 @@ Specifications:
 - Control Signal: PWM
 - Type: High-Torque Digital Servo
 
-[📷 Servo Motor](electromechanical-components/motors/servo-motor)
+[📷 Servo Motor](electromechanical-components/motors/servo-motor/)
 
 ### 🎮 Motor Driver
 
