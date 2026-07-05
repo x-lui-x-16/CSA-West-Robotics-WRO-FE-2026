@@ -54,8 +54,8 @@ All the materials used to create pur rpbot
 - 1 Fuse (1A)
 - 1 Fuse Holder
 - 1 Power Supply (More of this could be seen on Power Management)
-    - 1 Case of 3 18650 Batteries in Series
-    - 3 18650 3.7V Battery
+    - 4 Cases of 1 18650 Batteries connected in series
+    - 4 18650 3.7V 2800mAh Battery 
 - 1 Chasis
     - 4 Wheels
     - 1 [Greartisan DC 12V 300RPM Motor](https://honestforwarder.com/product/greartisan-dc-12v-300rpm-geared-motor-high-torque-electric-micro-speed-reduction-gear-motor-eccentric-output-shaft-37-mm-diameter-gear-D4DQXkS1zP)
@@ -145,9 +145,9 @@ Our code, available here, outlines the specific algorithms and logic used for co
 The robot was designed with a modular electromechanical architecture that combines reliable hardware, custom 3D-printed parts, and efficient power distribution. Every component was selected to provide stability, ease of maintenance, and consistent performance throughout the competition.
 
 ### 🔋 Power System
-The robot is powered by a 3-cell (3S) 18650 lithium battery pack, which supplies the energy required for all electronic and mechanical components. The battery holder includes an integrated power switch, allowing the entire robot to be turned on safely before each run.
+The robot is powered by a 4-cell (4S) 18650 lithium battery pack, which supplies the energy required for all electronic and mechanical components. The battery holder includes an integrated power switch, allowing the entire robot to be turned on safely before each run.
 
-The battery pack is connected directly to the L298N motor driver through its 12V and GND terminals. The onboard 5V regulator of the L298N is then used to power a breadboard, which distributes power to the Arduino, sensors, and the remaining electronic devices.
+The battery pack is connected directly to the L298N motor driver through its +12V and GND terminals. The onboard 5V regulator of the L298N is then used to power a breadboard, which distributes power to the Arduino, sensors, and the remaining electronic devices.
 
 To improve usability during competitions, the robot also includes a push button that starts the autonomous program after the robot has been powered on.
 
@@ -257,7 +257,7 @@ The following folder shows images of all the main electromechanical components u
 ## ⚡ Power Management
 A reliable power distribution system is essential to ensure stable operation of both the electronic and mechanical components during the competition.
 
-The robot is powered by a **3S 18650 lithium battery pack**, which supplies the main power source for the entire system. The battery output is connected directly to the **L298N motor driver** through its **12V** and **GND** terminals. This allows the driver to power the DC motors while simultaneously providing a regulated **5V output**.
+The robot is powered by a **4S 18650 lithium battery pack**, which supplies the main power source for the entire system. The battery output is connected directly to the **L298N motor driver** through its **+12V** and **GND** terminals. This allows the driver to power the DC motors while simultaneously providing a regulated **5V output**.
 
 The regulated **5V** and **GND** outputs from the L298N are connected to a **breadboard**, which acts as the central power distribution point for the low-voltage electronics. From there, power is supplied to the **Arduino Nano 33 IoT**, the **Pixy2 camera**, the **MG996R steering servo**, and the **HC-SR04 ultrasonic sensors**.
 
@@ -268,7 +268,7 @@ This power management architecture simplifies wiring, centralizes power distribu
 ### ⚡ Power Management Diagram
 ```mermaid
 flowchart TD
-    A["🔋 3S 18650 Battery Pack"] --> B["🔘 Power Switch"]
+    A["🔋 4S 18650 Battery Pack"] --> B["🔘 Power Switch"]
     B --> C["🎮 L298N Motor Driver"]
 
     C --> D["⚙️ Geartisan 12V DC Motor"]
