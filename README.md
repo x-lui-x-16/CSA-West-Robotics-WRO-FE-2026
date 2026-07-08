@@ -42,7 +42,7 @@ flowchart TD
 
 ## 🧰 Engineering Materiales
 All the materials used to create pur rpbot
-- [Arduino Nano 33 IoT](https://docs.arduino.cc/hardware/nano-33-iot) 
+- [Arduino Mega 2560 R3](https://docs.arduino.cc/resources/datasheets/A000067-datasheet.pdf) 
 - 1 [Pixy2 Cam](https://pixycam-com.translate.goog/pixy2/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc)
 - 1 [L298n Motor Driver Board Module](https://naylampmechatronics.com/blog/11_tutorial-de-uso-del-modulo-l298n.html)
 - 3 [Ultrasonic Sensors HC-SR04](https://www.amazon.com/-/es/ultrasónico-HC-SR04-detector-distancia-Arduino/dp/B09PBJ4ZY1)
@@ -102,7 +102,7 @@ Robots are assessed based on several factors, including navigation accuracy, com
 ## 🚗 Mobility
 Our robot uses an Ackermann steering system, a steering geometry commonly found in real automobiles. This configuration allows the robot to perform smooth and controlled turns by steering only the front wheels, while the rear wheels are responsible for propulsion through a rigid rear axle.
 
-The steering mechanism is actuated by an MG996R high-torque servo motor, which is directly connected to the custom-designed Ackermann linkage. Based on the navigation decisions made by the Arduino Nano 33 IoT, the servo adjusts the steering angle, allowing the robot to accurately follow the track, avoid obstacles, and execute the required maneuvers during the competition.
+The steering mechanism is actuated by an MG996R high-torque servo motor, which is directly connected to the custom-designed Ackermann linkage. Based on the navigation decisions made by the Arduino Mega 2560 R3, the servo adjusts the steering angle, allowing the robot to accurately follow the track, avoid obstacles, and execute the required maneuvers during the competition.
 
 Propulsion is provided by a Geartisan 12V 300 RPM DC gear motor, which transmits power to the rigid rear axle. This configuration separates the steering and driving systems, resulting in smoother motion and more predictable vehicle behavior.
 
@@ -121,7 +121,7 @@ Overall, the combination of a dedicated steering servo, a rear-wheel drive syste
 ## 🎯 Strategy
 Strategy Explanation
 ### Color Detection with Pixy2 Cam:
-We integrated a Pixy2 Cam with the Arduino Nano 33 IoT to accurately detect colors. This system allows the robot to recognize green and red colors, which serve as signals to turn left or right, respectively. By using a camera module and appropriate color detection algorithms, the robot can continuously monitor its environment and respond in real time.
+We integrated a Pixy2 Cam with the Arduino Mega 2560 R3 to accurately detect colors. This system allows the robot to recognize green and red colors, which serve as signals to turn left or right, respectively. By using a camera module and appropriate color detection algorithms, the robot can continuously monitor its environment and respond in real time.
 
 ### Directional Decision Making:
 Upon detecting the color green, the robot is programmed to turn left. Conversely, when red is detected, the robot turns right. This color-based decision-making process ensures that the robot navigates efficiently and avoids obstacles or follows a designated path based on the predefined color signals.
@@ -155,11 +155,11 @@ To improve usability during competitions, the robot also includes a push button 
 
 ### 🧠 Main Controller
 
-The main controller of the robot is an Arduino Nano 33 IoT, which acts as the central processing unit of the entire system. It receives information from the vision system and ultrasonic sensors, processes all navigation decisions, and controls the motors accordingly.
+The main controller of the robot is an Arduino Mega 2560 R3, which acts as the central processing unit of the entire system. It receives information from the vision system and ultrasonic sensors, processes all navigation decisions, and controls the motors accordingly.
 
 Its compact size, processing capability, and reliable I/O communication make it an excellent choice for autonomous robotics applications.
 
-[📷 Arduino Nano 33 IoT Image](electromechanical-components/arduino/)
+[📷 Arduino Mega 2560 R3 Image](electromechanical-components/arduino/)
 
 ### 👁️ Vision System
 
@@ -206,7 +206,7 @@ Specifications
 #### Servo Motor
 The robot uses an MG996R high-torque servo motor to control the steering mechanism of the front wheels. Unlike differential-drive robots, our vehicle follows an Ackermann-inspired steering configuration, allowing it to perform smoother and more realistic turns while maintaining stability throughout the course.
 
-The Arduino Nano 33 IoT continuously calculates the desired steering angle using data from the Pixy2 camera and the ultrasonic sensors. Based on this information, the servo precisely adjusts the front wheels, enabling the robot to navigate around obstacles, follow the track, and execute accurate parking maneuvers.
+The Arduino Mega 2560 R3 continuously calculates the desired steering angle using data from the Pixy2 camera and the ultrasonic sensors. Based on this information, the servo precisely adjusts the front wheels, enabling the robot to navigate around obstacles, follow the track, and execute accurate parking maneuvers.
 
 The MG996R was selected because of its high torque, fast response, and reliable performance, making it well suited for the steering demands of the WRO Future Engineers challenge.
 
@@ -222,7 +222,7 @@ Specifications:
 
 Motor control is performed using an L298N Dual H-Bridge Motor Driver.
 
-The driver receives movement commands from the Arduino Nano 33 IoT and regulates the motors accordingly. Besides driving the motors, the L298N also provides a regulated 5V output, which is used to power the breadboard and the robot's low-voltage electronics.
+The driver receives movement commands from the Arduino Mega 2560 R3 and regulates the motors accordingly. Besides driving the motors, the L298N also provides a regulated 5V output, which is used to power the breadboard and the robot's low-voltage electronics.
 
 The L298N was selected because it is reliable, easy to integrate, and widely used in educational and robotics projects.
 
@@ -259,7 +259,7 @@ A reliable power distribution system is essential to ensure stable operation of 
 
 The robot is powered by a **4S 18650 lithium battery pack**, which supplies the main power source for the entire system. The battery output is connected directly to the **L298N motor driver** through its **+12V** and **GND** terminals. This allows the driver to power the DC motors while simultaneously providing a regulated **5V output**.
 
-The regulated **5V** and **GND** outputs from the L298N are connected to a **breadboard**, which acts as the central power distribution point for the low-voltage electronics. From there, power is supplied to the **Arduino Nano 33 IoT**, the **Pixy2 camera**, the **MG996R steering servo**, and the **HC-SR04 ultrasonic sensors**.
+The regulated **5V** and **GND** outputs from the L298N are connected to a **breadboard**, which acts as the central power distribution point for the low-voltage electronics. From there, power is supplied to the **Arduino Mega 2560 R3**, the **Pixy2 camera**, the **MG996R steering servo**, and the **HC-SR04 ultrasonic sensors**.
 
 To improve safety and usability, the robot includes a **main power switch** that disconnects the battery from the entire electrical system when not in use. Additionally, a dedicated **start button** allows the robot to remain powered while delaying the execution of the autonomous program until the official start signal is given.
 
@@ -276,7 +276,7 @@ flowchart TD
 
     E --> F["🍞 Breadboard"]
 
-    F --> G["🧠 Arduino Nano 33 IoT"]
+    F --> G["🧠 Arduino Mega 2560 R3"]
     F --> H["👁️ Pixy2 Camera"]
     F --> I["🚗 MG996R Steering Servo"]
     F --> J["📏 Left HC-SR04"]
