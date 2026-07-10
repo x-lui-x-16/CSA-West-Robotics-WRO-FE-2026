@@ -16,3 +16,4 @@ The robot continuously reads sensor inputs, processes environmental data, and ex
 
 ## 🧠 Architecture
 The software is structured to ensure modularity, making it easier to test, debug, and improve individual subsystems.
+
