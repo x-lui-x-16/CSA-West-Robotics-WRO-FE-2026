@@ -54,7 +54,8 @@ All the materials used to create pur rpbot
 - 1 Fuse (1A)
 - 1 Fuse Holder
 - 1 Power Supply (More of this could be seen on Power Management)
-    - 4 Cases of 1 18650 Batteries connected in series
+    - 1 Case of 1 18650 Batterie connected in series
+    - 1 Case of 3 18650 Batteries connected in series
     - 4 18650 3.7V 2800mAh Battery 
 - 1 Chasis
     - 4 Wheels
@@ -133,13 +134,276 @@ In addition to color detection, our robot is equipped with ultrasonic sensors to
 Our code, available here, outlines the specific algorithms and logic used for color detection, decision-making, and obstacle avoidance. The integration of the vision system with Arduino's control mechanisms is crucial for the robot's functionality.
 
 ### Color Detection Algorithm:
-.......
+The color detection system will be developed and documented in the second phase of the challenge.  
+This section will later describe how the robot reads, processes, and classifies color data, as well as how those detections are integrated into its navigation or task logic.
 
 ### Obstacle Avoidance Routine:
-.......
+The obstacle avoidance routine will also be addressed in the second phase of the challenge.  
+At that stage, this section will explain how the robot detects obstacles, decides on avoidance maneuvers, and integrates those actions with the rest of the navigation system.
 
 ## Code Explanation
-........
+The robot follows this sequence:
+
+1. **Waits for the start button**
+2. **Drives forward while staying centered**
+3. **Uses the left and right ultrasonic sensors with a PD controller**
+4. **Checks the front sensor to detect when it is approaching a corner**
+5. **Compares the side distances to decide whether to turn left or right**
+6. **Executes a 90° turn using the servo and a timed forward motion**
+7. **Counts the completed turns**
+8. **Repeats the process until the required number of turns is reached**
+9. **Performs a small final forward movement and stops**
+
+---
+
+### Code Structure
+#### 1. Libraries and Servo Object
+The code starts by including the Servo library and creating a servo object:
+
+```cpp
+#include <Servo.h>
+Servo miServo;
+```
+The servo is used to control the Ackermann steering system of the robot.
+
+#### 2. Pin Definitions
+The next section defines all hardware connections:
+
+- HC-SR04 pins
+Front ultrasonic sensor
+Left ultrasonic sensor
+Right ultrasonic sensor
+- L298N pins
+PWM speed pin (ENA)
+Direction pins (IN1, IN2)
+- Servo pin
+Start button pin
+
+These definitions are grouped at the top of the code so that hardware changes can be made easily without modifying the rest of the program.
+
+#### 3. Steering Constants
+The servo uses three main steering positions:
+- SERVO_CENTER → wheels pointing straight
+- SERVO_MAX_LEFT → maximum left steering angle
+- SERVO_MAX_RIGHT → maximum right steering angle
+
+These values are based on the robot’s Ackermann steering geometry and can be adjusted if the steering range changes.
+
+#### 4. Track and Robot Geometry
+The code includes constants that describe the robot and the track:
+- ROBOT_WIDTH_MM
+- LANE_WIDTH_MM
+- TARGET_SIDE_DISTANCE_MM
+- SIDE_TOLERANCE_MM
+These values represent the width of the robot, the width of the lane, and the ideal side distance when the robot is centered.
+
+For a 1000 mm lane and an 85 mm robot width, the ideal distance to each side wall is:
+- (1000 - 85) / 2 = 457.5 mm
+Although this target value is useful for reference, the centering logic mainly relies on comparing the left and right sensor readings directly.
+
+#### 5. Turn Detection and Decision Thresholds
+The code uses two key parameters to detect and classify turns:
+- FRONT_TURN_TRIGGER_MM
+- TURN_RATIO
+
+##### FRONT_TURN_TRIGGER_MM
+This is the front distance threshold that tells the robot it is approaching the end of a straight corridor.
+##### TURN_RATIO
+This is used to determine whether one side is open enough to justify a turn.
+
+Example logic:
+
+Turn right if the right distance is at least 2× the left distance
+Turn left if the left distance is at least 2× the right distance
+
+This helps prevent false turns caused by small measurement differences or sensor noise.
+
+### PD Centering Control
+#### Goal
+The robot should stay approximately in the center of the lane while driving forward.
+
+To do this, the code compares the left and right ultrasonic readings and computes an error:
+```cpp
+error = leftDistance - rightDistance;
+```
+#### Interpretation of the error
+- error = 0 → the robot is centered
+- error > 0 → the left side is more open than the right side, so the robot is too close to the right wall
+- error < 0 → the right side is more open than the left side, so the robot is too close to the left wall
+#### PD Formula
+The steering correction is calculated with a PD controller:
+```cpp
+correction = KP * error + KD * derivative;
+```
+where:
+```cpp
+derivative = error - previousError;
+```
+#### Meaning of each term
+- P (Proportional): reacts to how far the robot is from the center
+- D (Derivative): reacts to how quickly the error is changing and helps reduce oscillation
+The resulting correction is converted into a servo angle around the center position.
+
+### State Machine
+The program uses a simple state machine to keep the logic organized.
+#### States
+- STATE_DRIVE_CENTER
+In this state, the robot:
+    - drives forward
+    - applies PD steering correction
+    - monitors the front sensor
+    - checks whether a turn should begin
+- STATE_TURNING_LEFT
+In this state, the robot:
+    - sets the steering to maximum left
+    - drives forward at turning speed
+    - keeps turning until the turn timer is completed
+- STATE_TURNING_RIGHT
+This works exactly like the left turn state, but mirrored to the right side.
+- STATE_FINISHED
+This is the final state. The robot stops the motor, centers the servo, and does not continue moving.
+### Important Functions
+```cpp
+percentToPWM(int percent)
+```
+Converts a speed value from 0–100% into 0–255 PWM, which is required by analogWrite().
+```cpp
+setMotorForward(int speedPercent)
+```
+Makes the rear motor move forward at the requested speed.
+
+Internally, it:
+- Converts the speed percentage to PWM
+- Sets the L298N direction pins for forward motion
+- Sends the PWM signal to the motor driver
+```cpp
+stopMotor()
+```
+Stops the rear drive motor.
+```cpp
+readDistanceMM(int trigPin, int echoPin)
+```
+Reads a single HC-SR04 sensor and returns the measured distance in millimeters.
+
+If no valid echo is received within the timeout, it returns -1.
+```cpp
+readAllSensors(float &frontMM, float &leftMM, float &rightMM)
+```
+Reads all three ultrasonic sensors and stores the values in the provided variables.
+```cpp
+applyPDCentering(float leftMM, float rightMM)
+```
+Uses the left and right side distances to compute the steering correction and keep the robot centered.
+
+This function:
+- checks whether both side readings are valid
+- computes the centering error
+- computes the derivative term
+- applies the PD formula
+- converts the result into a servo angle
+- constrains the angle to the allowed steering range
+- sends the final angle to the servo
+```cpp
+beginLeftTurn()
+```
+and
+```cpp
+beginRightTurn()
+```
+These functions start a turn by:
+- changing the robot state
+- storing the turn start time
+- steering fully left or fully right
+- driving forward at turn speed
+```cpp
+finishTurnAndReturnToDrive()
+```
+This function is called when the programmed turn time has elapsed.
+
+It:
+- increments the turn counter
+- centers the steering
+- checks whether the robot already completed the required number of turns
+- either returns to STATE_DRIVE_CENTER or performs the final forward movement and stops
+
+### Setup Phase
+Inside setup(), the code:
+- Starts Serial communication
+- Configures the start button with INPUT_PULLUP
+- Configures the L298N pins as outputs
+- Attaches the servo and centers it
+- Configures the ultrasonic sensor pins
+- Ensures the motor is stopped at startup
+This guarantees that the robot starts in a safe and predictable state.
+
+### Main Loop Behavior
+The loop() function is divided into several logical stages.
+1. Wait for the Start Button
+If the robot has not started yet, it remains stopped and waits for the button to be pressed.
+2. Stop if the Mission is Finished
+If the robot already completed all required turns, it stays stopped.
+3. Run the Control Loop at a Fixed Interval
+The program only updates the main control logic every controlIntervalMs milliseconds. This helps keep the PD behavior more stable.
+4. Read All Sensors
+The robot reads the front, left, and right ultrasonic sensors.
+5. Print Debug Information
+The code prints the sensor values and the current turn count to the Serial Monitor.
+6. Execute the Current State
+Depending on the current state, the robot will either:
+- drive centered,
+- turn left,
+- turn right,
+- or remain stopped.
+### Turn Counting and Final Stop
+The robot counts how many 90° turns it has completed using completedTurns.
+
+Once completedTurns reaches totalTurnsNeeded:
+- the steering is centered
+- the robot moves forward a short extra distance
+- the motor stops
+- the program enters STATE_FINISHED
+This final forward movement helps the robot stop closer to its original starting position instead of stopping immediately at the end of the last turn.
+### Parameters That Will Likely Need Calibration
+The following values are the most important to tune during real-world testing:
+#### Steering / Centering
+- KP
+- KD
+- SERVO_CENTER
+- SERVO_MAX_LEFT
+- SERVO_MAX_RIGHT
+#### Straight Motion
+- baseSpeedPercent
+#### Turning
+- turnSpeedPercent
+- turn90TimeMs
+#### Corner Detection
+- FRONT_TURN_TRIGGER_MM
+- TURN_RATIO
+#### Final Stop Position
+- finalForwardTimeMs
+- finalForwardSpeedPercent
+### Notes About the Current Turning Method
+At the moment, the 90° turn is estimated using time only.
+This is a practical solution, but it is not the most precise one because the actual turn angle can vary depending on:
+- battery level
+- wheel traction
+- floor surface
+- motor speed consistency
+- robot weight distribution
+For higher accuracy, a future version of the project could use:
+- wheel encoders
+- an IMU / gyroscope
+- or a more advanced corner-detection strategy based on sensor geometry
+### Summary
+In short, the robot combines:
+- ultrasonic sensing
+- PD steering correction
+- Ackermann steering
+- corner detection
+- timed turning
+- turn counting
+- manual button start
+to complete a multi-lap rectangular path while staying centered and performing repeated 90° turns.
 
 ## ⚙️ Electromechanical Components
 The robot was designed with a modular electromechanical architecture that combines reliable hardware, custom 3D-printed parts, and efficient power distribution. Every component was selected to provide stability, ease of maintenance, and consistent performance throughout the competition.
@@ -167,9 +431,13 @@ The robot uses a Pixy2 Camera to detect the colored obstacle markers placed arou
 
 A custom vision algorithm allows the camera to distinguish between red and green objects. Once a color is identified, the corresponding information is transmitted to the Arduino Nano 33 IoT, which decides whether the robot should turn left or right according to the competition rules.
 
-#### Communication protocol: ...
+#### Communication Protocol:
+The communication protocol will be developed and documented in the second phase of the challenge.  
+This section will later describe how the robot exchanges information between the arduino and the Pixy2 Camera, the structure of the transmitted data, and how that communication supports the overall project workflow.
 
-#### Detection algorithm: ...
+#### Detection Algorithm:
+The detection algorithm will also be addressed in the second phase of the challenge.  
+At that stage, this section will explain how camera data is processed to identify relevant conditions, events, or targets, and how those detections are integrated into the robot’s navigation and decision-making logic.
 
 [📷 Pixy2 Camera Image](electromechanical-components/pixy2/)
 
@@ -283,4 +551,14 @@ flowchart TD
     F --> K["📏 Center HC-SR04"]
     F --> L["📏 Right HC-SR04"]
 ```
+
+### Acknowledgements
+This project would not have been the same without the support of several people who contributed their time, ideas, feedback, and encouragement throughout its development.
+
+We would especially like to thank:
+- **Colegio San Agustín La Chorrera** - for support, their guidance and for providing us with a space to work during the development of the project.
+- **Gabriel from Banistmo** — for technical guidance, programming support and feedback.
+- **TekBot Lab** — for help with robot design and feedback.
+
+We are grateful for their help and for the role they played in making this project possible.
 
