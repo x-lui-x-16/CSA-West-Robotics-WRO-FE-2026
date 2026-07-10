@@ -8,3 +8,4 @@ This directory contains the official team photographs for the WRO Future Enginee
 
 ## 🏆 Purpose
 These images are used for documentation and team identification during the competition and in the official GitHub repository.
+
