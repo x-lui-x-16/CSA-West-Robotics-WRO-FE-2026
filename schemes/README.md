@@ -10,3 +10,4 @@ These schemes document how each component is connected, ensuring clarity in the 
 The diagrams illustrate how power and data flow between the Arduino Nano 33 IoT, Pixy2 camera, ultrasonic sensors, motor driver, and steering system.
 
 These schematics are essential for understanding the robot’s electrical design.
+
