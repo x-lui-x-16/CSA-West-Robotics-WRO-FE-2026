@@ -139,7 +139,7 @@ This section will later describe how the robot reads, processes, and classifies 
 The obstacle avoidance routine will also be addressed in the second phase of the challenge.  
 At that stage, this section will explain how the robot detects obstacles, decides on avoidance maneuvers, and integrates those actions with the rest of the navigation system.
 
-## Code Explanation
+## 💻 Code Explanation
 The robot follows this sequence:
 
 1. **Waits for the start button**
@@ -550,12 +550,12 @@ flowchart TD
     F --> L["📏 Right HC-SR04"]
 ```
 
-### Acknowledgements
+### 🫶🏽 Acknowledgements
 This project would not have been the same without the support of several people who contributed their time, ideas, feedback, and encouragement throughout its development.
 
 We would especially like to thank:
 - **Colegio San Agustín La Chorrera** - for support, their guidance and for providing us with a space to work during the development of the project.
-- **Gabriel from Banistmo** — for technical guidance, programming support and feedback.
+- **Gabriel Rodríguez from Banistmo** — for technical guidance, programming support and feedback.
 - **TekBot Lab** — for help with robot design and feedback.
 
 We are grateful for their help and for the role they played in making this project possible.
