@@ -42,7 +42,7 @@ flowchart TD
 
 ## 🧰 Engineering Materiales
 All the materials used to create pur rpbot
-- [Arduino Mega 2560 R3](https://docs.arduino.cc/resources/datasheets/A000067-datasheet.pdf) 
+- 1 [Arduino Mega 2560 R3](https://docs.arduino.cc/resources/datasheets/A000067-datasheet.pdf) 
 - 1 [Pixy2 Cam](https://pixycam-com.translate.goog/pixy2/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc)
 - 1 [L298n Motor Driver Board Module](https://naylampmechatronics.com/blog/11_tutorial-de-uso-del-modulo-l298n.html)
 - 3 [Ultrasonic Sensors HC-SR04](https://www.amazon.com/-/es/ultrasónico-HC-SR04-detector-distancia-Arduino/dp/B09PBJ4ZY1)
@@ -50,9 +50,7 @@ All the materials used to create pur rpbot
 - 1 Push Botton
 - 1 Red LED for power indicator
 - 1 Resistor ( Ohms) for the power indicator LED
-- 26 Proto Wires
-- 1 Fuse (1A)
-- 1 Fuse Holder
+- 32 Proto Wires
 - 1 Power Supply (More of this could be seen on Power Management)
     - 1 Case of 1 18650 Batterie connected in series
     - 1 Case of 3 18650 Batteries connected in series
