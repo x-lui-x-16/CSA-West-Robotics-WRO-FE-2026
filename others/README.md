@@ -12,3 +12,4 @@ This space is reserved for:
 
 ## 🧹 Status
 Currently, no essential files are stored in this directory.
+
