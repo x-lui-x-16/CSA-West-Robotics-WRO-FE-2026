@@ -13,3 +13,4 @@ This directory contains all the main mechanical and electronic components used i
 These components form the complete electromechanical architecture of the robot, integrating power, control, sensing, and actuation systems into a single autonomous platform.
 
 This folder helps document the hardware design and provides a clear overview of how each subsystem contributes to the robot’s overall functionality in the WRO Future Engineers challenge.
+
