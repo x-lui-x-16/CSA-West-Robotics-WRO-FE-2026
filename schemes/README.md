@@ -5,6 +5,7 @@ These schemes document how each component is connected, ensuring clarity in the 
 
 ## 📌 Contents
 - Wiring diagrams of the robot
+- Wiring Explanation detailed
 
 ## ⚡ Overview
 The diagrams illustrate how power and data flow between the Arduino Nano 33 IoT, Pixy2 camera, ultrasonic sensors, motor driver, and steering system.
