@@ -1,4 +1,4 @@
-# 🤖🚗 Vehicle Pictures
+# 🤖🚗 Vehicle Photos
 This directory contains detailed images of the robot.
 
 ## 📌 Contents
@@ -7,3 +7,4 @@ This directory contains detailed images of the robot.
 
 ## 🔍 Purpose
 These images help illustrate the mechanical design, component layout, and overall structure of the robot, providing a clear understanding of the system architecture.
+
