@@ -556,7 +556,7 @@ This project would not have been the same without the support of several people 
 We would especially like to thank:
 - **Colegio San Agustín La Chorrera** - for support, their guidance and for providing us with a space to work during the development of the project.
 - **Gabriel Rodríguez from Banistmo** — for technical guidance, programming support and feedback.
-- **TekBot Lab** — for help with robot design and feedback.
+- **TekBot Lab** — for help with robot design, technical help and feedback.
 
 We are grateful for their help and for the role they played in making this project possible.
 
