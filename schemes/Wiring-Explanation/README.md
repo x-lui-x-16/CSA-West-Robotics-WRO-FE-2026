@@ -4,21 +4,21 @@ Forward motion is provided by a **12V DC rear motor** driven through an **L298N 
 Three **HC-SR04 ultrasonic sensors** are used to measure distances to the front, left, and right sides of the robot, allowing it to navigate corridors and evaluate turns.  
 The prototype also includes a **start push button**, a **power indicator LED**, and a **main on/off switch** integrated into the battery supply line.
 
-At the current stage of development, the robot is powered by a **4-cell 18650 battery pack**, with the **L298N motor driver acting as the main power entry point**.  
+At the current stage of development, the robot is powered by a **3-cell 18650 battery pack**, with the **L298N motor driver acting as the main power entry point**.  
 Low-voltage devices such as the Arduino, ultrasonic sensors, servo, and LED are supplied through the **5V rail distributed from the L298N regulator to the breadboard**.
 
 ---
 
 ## Power Distribution
-The robot uses **four 18650 lithium-ion cells** arranged as a **4-cell series battery pack**.  
+The robot uses **three 18650 lithium-ion cells** arranged as a **3-cell series battery pack**.  
 This battery pack supplies the motor driver directly and, through the L298N’s onboard regulator, also powers the low-voltage electronics.
 
 ### Battery configuration
 - **Battery type:** 18650 Li-ion
-- **Number of cells:** 4
+- **Number of cells:** 3
 - **Nominal voltage per cell:** 3.7 V
 - **Fully charged voltage per cell:** ~4.1 V
-- **Total pack voltage:** approximately **14.1 V to 16.4 V**
+- **Total pack voltage:** approximately **11.1 V to 12.6 V**
 
 ### Main power path
 ```text
