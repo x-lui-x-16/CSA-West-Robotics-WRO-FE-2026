@@ -44,9 +44,124 @@ The robot: waits for a start button → drives forward with the steering servo h
 - **Motor driver:** L298N Dual H-Bridge — also supplies regulated 5V.
 - **Chassis:** custom-designed, mostly 3D-printed (4 wheels, 8 supports, mounting screws), optimizing component placement and easy maintenance.
 
+### 🔋 Power System
+The robot is powered by a 3-cell (3S) 18650 lithium battery pack, which supplies the energy required for all electronic and mechanical components. The battery holder includes an integrated power switch, allowing the entire robot to be turned on safely before each run.
+
+The battery pack is connected directly to the L298N motor driver through its +12V and GND terminals. The onboard 5V regulator of the L298N is then used to power a breadboard, which distributes power to the Arduino, sensors, and the remaining electronic devices.
+
+To improve usability during competitions, the robot also includes a push button that starts the autonomous program after the robot has been powered on.
+
+[📷 Power System Image](electromechanical-components/battery/)
+
+### 🧠 Main Controller
+
+The main controller of the robot is an Arduino Mega 2560 R3, which acts as the central processing unit of the entire system. It receives information from the vision system and ultrasonic sensors, processes all navigation decisions, and controls the motors accordingly.
+
+Its compact size, processing capability, and reliable I/O communication make it an excellent choice for autonomous robotics applications.
+
+[📷 Arduino Mega 2560 R3 Image](electromechanical-components/arduino/)
+
+### 👁️ Vision System
+
+The robot uses a Pixy2 Camera to detect the colored obstacle markers placed around the track.
+
+A custom vision algorithm allows the camera to distinguish between red and green objects. Once a color is identified, the corresponding information is transmitted to the Arduino Nano 33 IoT, which decides whether the robot should turn left or right according to the competition rules.
+
+#### Communication Protocol:
+
+The communication protocol will be developed and documented in the second phase of the challenge.  
+
+This section will later describe how the robot exchanges information between the arduino and the Pixy2 Camera, the structure of the transmitted data, and how that communication supports the overall project workflow.
+
+#### Detection Algorithm:
+
+The detection algorithm will also be addressed in the second phase of the challenge.  
+
+At that stage, this section will explain how camera data is processed to identify relevant conditions, events, or targets, and how those detections are integrated into the robot’s navigation and decision-making logic.
+
+[📷 Pixy2 Camera Image](electromechanical-components/pixy2/)
+
+### 📏 Ultrasonic Sensors
+
+Three HC-SR04 ultrasonic sensors are mounted across the front of the robot.
+
+These sensors continuously measure the distance between the robot and nearby walls or obstacles, allowing the robot to navigate safely through the track.
+
+Each HC-SR04 sensor provides non-contact distance measurements from approximately 2 cm to 400 cm, with an accuracy of up to 3 mm.
+
+The sensor arrangement consists of:
+- Left ultrasonic sensor
+- Center ultrasonic sensor
+- Right ultrasonic sensor
+- 
+Together, these sensors provide the robot with a wider field of view, enabling more accurate obstacle avoidance and wall-following behavior.
+
+[📷 Ultrasonic Sensors](electromechanical-components/ultrasonic-sensors/)
+
+### ⚙️ Drive System
+
+#### DC Motor
+
+The robot is driven by the EV3 Large Motor.
+
+These motors provide a good balance between speed and torque, allowing smooth movement while maintaining enough power for acceleration, turning, and obstacle avoidance during the competition.
+
+[📷 DC Motor](electromechanical-components/motors/dc-motor/)
+
+#### Servo Motor
+
+The robot uses an MG996R high-torque servo motor to control the steering mechanism of the front wheels. Unlike differential-drive robots, our vehicle follows an Ackermann-inspired steering configuration, allowing it to perform smoother and more realistic turns while maintaining stability throughout the course.
+
+The Arduino Mega 2560 R3 continuously calculates the desired steering angle using data from the Pixy2 camera and the ultrasonic sensors. Based on this information, the servo precisely adjusts the front wheels, enabling the robot to navigate around obstacles, follow the track, and execute accurate parking maneuvers.
+
+The MG996R was selected because of its high torque, fast response, and reliable performance, making it well suited for the steering demands of the WRO Future Engineers challenge.
+
+Specifications:
+- Model: MG996R
+- Operating Voltage: 4.8–7.2 V
+- Control Signal: PWM
+- Type: High-Torque Digital Servo
+
+[📷 Servo Motor](electromechanical-components/motors/servo-motor/)
+
+### 🎮 Motor Driver
+
+Motor control is performed using an L298N Dual H-Bridge Motor Driver.
+
+The driver receives movement commands from the Arduino Mega 2560 R3 and regulates the motors accordingly. Besides driving the motors, the L298N also provides a regulated 5V output, which is used to power the breadboard and the robot's low-voltage electronics.
+
+The L298N was selected because it is reliable, easy to integrate, and widely used in educational and robotics projects.
+
+[📷 Motor Driver](electromechanical-components/motor-driver/)
+
+### 🏗️ Mechanical Structure
+
+The chassis was entirely designed by our team and manufactured primarily using 3D printing.
+
+Almost every structural component of the robot is custom-made, allowing us to optimize the placement of electronics, reduce weight, simplify maintenance, and adapt the robot specifically for the WRO Future Engineers challenge.
+
+Only the structural supports and steering mechanism were not 3D printed.
+
+The robot includes:
+- 4 wheels
+- 8 structural supports
+- Structural mounting screws
+- Custom 3D-printed chassis
+
+This modular design allows individual components to be replaced quickly without rebuilding the entire robot.
+
+### 🔌 Wiring Diagram
+
+The electrical connections between all components are summarized in the wiring diagram below.
+<img width="1095" height="541" alt="FE-2026 V3 Wiring Diagram" src="https://github.com/user-attachments/assets/d20d9c9b-f83a-463c-869e-265c230413a5" />
+### 📸 Component Gallery
+
+The following folder shows images of all the main electromechanical components used in the robot.
+- [Electromechanical Components](elechtromechanical-components/)
 📸 [Component gallery](electromechanical-components/)
 
 ## ⚡ Power Management
+
 The robot is powered by a **3S 18650 lithium battery pack** pack (three 3.7V, 2800 mAh cells in series), which supplies the main power source for the entire system. The battery output is connected directly to the **L298N motor driver** through its **+12V** and **GND** terminals. This allows the driver to power the DC motors while simultaneously providing a regulated **5V output**.
 
 The regulated **5V** and **GND** outputs from the L298N are connected to a **breadboard**, which acts as the central power distribution point for the low-voltage electronics. From there, power is supplied to the **Arduino Mega 2560 R3**, the **Pixy2 camera**, the **MG996R steering servo**, and the **HC-SR04 ultrasonic sensors**.
