@@ -6,7 +6,7 @@ For the WRO Future Engineers challenge, we built an autonomous robot that combin
 
 | Photo | Name | Role - Decription |
 |:---:|---|---|
-| <img width="380" height="480" alt="WhatsApp Image 2026-09-08 at 9 08 41 AM" src="https://github.com/user-attachments/assets/acb792e6-c1ff-4cbe-a9d1-d59af59a60fb" /> | Ernesto Victoria | Coach - 	Guides the team's strategy, training and overall project direction. |
+| <img width="350" height="480" alt="WhatsApp Image 2026-09-08 at 9 08 41 AM" src="https://github.com/user-attachments/assets/acb792e6-c1ff-4cbe-a9d1-d59af59a60fb" /> | Ernesto Victoria | Coach - 	Guides the team's strategy, training and overall project direction. |
 | <img width="400" height="480" alt="WhatsApp Image 2026-08-29 at 6 13 13 PM" src="https://github.com/user-attachments/assets/aab28335-3634-47e3-a587-9c07428ec54b" /> | Saory Puga | Programmer - 	Develops and refines the robot's navigation and control code. |
 | <img width="400" height="480" alt="WhatsApp Image 2026-08-29 at 6 13 14 PM" src="https://github.com/user-attachments/assets/9e392e01-efd8-45e2-b740-1e15d8458a9f" /> | Dereck Cisneros | Mechanic - 	Designs and builds the robot's chassis and mechanical systems. |
 | <img width="400" height="480" alt="WhatsApp Image 2026-08-29 at 6 13 13 PM (1)" src="https://github.com/user-attachments/assets/dce56369-6b37-4db8-a421-50e227d17b17" /> | Luis Hidalgo | Mechanic & Programmer — Team Captain - Leads the team, combining mechanical design with programming to integrate the robot's systems. |
