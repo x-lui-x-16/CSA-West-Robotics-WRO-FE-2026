@@ -47,7 +47,14 @@ The robot: waits for a start button → drives forward with the steering servo h
 📸 [Component gallery](electromechanical-components/)
 
 ## ⚡ Power Management
-The 3S 18650 pack feeds the L298N (+12V/GND), whose regulated 5V output powers a central breadboard supplying the Arduino, Pixy2 camera, servo and ultrasonic sensors. A main power switch disconnects the battery when idle; a separate start button delays the autonomous program until the official start signal.
+The robot is powered by a **3S 18650 lithium battery pack** pack (three 3.7V, 2800 mAh cells in series), which supplies the main power source for the entire system. The battery output is connected directly to the **L298N motor driver** through its **+12V** and **GND** terminals. This allows the driver to power the DC motors while simultaneously providing a regulated **5V output**.
+
+The regulated **5V** and **GND** outputs from the L298N are connected to a **breadboard**, which acts as the central power distribution point for the low-voltage electronics. From there, power is supplied to the **Arduino Mega 2560 R3**, the **Pixy2 camera**, the **MG996R steering servo**, and the **HC-SR04 ultrasonic sensors**.
+
+To improve safety and usability, the robot includes a **main power switch** that disconnects the battery from the entire electrical system when not in use. Additionally, a dedicated **start button** allows the robot to remain powered while delaying the execution of the autonomous program until the official start signal is given.
+
+This power management architecture simplifies wiring, centralizes power distribution, and ensures that all electronic components receive a stable supply voltage throughout the robot's operation.
+
 ## 🫶🏽 Acknowledgements
 - **Colegio San Agustín La Chorrera** — guidance and workspace.
 - **Gabriel Rodríguez (Banistmo)** — technical guidance, programming support and feedback.
