@@ -2,13 +2,14 @@
 For the WRO Future Engineers challenge, we built an autonomous robot that combines computer vision, distance sensing, and precise motion control. A **Pixy2 camera** detects colored markers along the track: green means turn left, red means turn right. Three **HC-SR04 ultrasonic sensors** on the front give the robot environmental awareness, letting it detect the front wall and nearby obstacles. Together, vision and ultrasonic sensing let the robot follow navigation rules while avoiding collisions, reliably and adaptively.
 
 ## 👥 Our Team
-
+<img width="1280" height="960" alt="27fb941c-3ae1-49fe-bac8-5fe324d17b53" src="https://github.com/user-attachments/assets/5fb33422-ca9d-4371-9d21-e53eff33bb84" />
 | Photo | Name | Role |
 |:---:|---|---|
 | _(add photo)_ | Ernesto Victoria | Coach |
-| _(add photo)_ | Saory Puga | Programmer |
-| _(add photo)_ | Dereck Cisneros | Mechanic |
-| _(add photo)_ | Luis Hidalgo | Mechanic & Programmer — Team Captain |
+| <img width="960" height="1280" alt="WhatsApp Image 2026-08-29 at 6 13 13 PM" src="https://github.com/user-attachments/assets/aab28335-3634-47e3-a587-9c07428ec54b" /> | Saory Puga | Programmer |
+| <img width="960" height="1280" alt="WhatsApp Image 2026-08-29 at 6 13 14 PM" src="https://github.com/user-attachments/assets/9e392e01-efd8-45e2-b740-1e15d8458a9f" />
+ | Dereck Cisneros | Mechanic |
+| <img width="960" height="1280" alt="WhatsApp Image 2026-08-29 at 6 13 13 PM (1)" src="https://github.com/user-attachments/assets/dce56369-6b37-4db8-a421-50e227d17b17" /> | Luis Hidalgo | Mechanic & Programmer — Team Captain |
 
 ## 🛠️ Building Instructions
 - Chassis: mostly 3D-printed, with some supports from the [YFROBOT Kit Chassis](https://yfrobot.com/products/steering-gear-robot).
