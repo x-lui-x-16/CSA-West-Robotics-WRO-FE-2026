@@ -26,13 +26,13 @@ Our robot uses **Ackermann steering**, the same geometry found in real cars, ste
 - **Color algorithm & obstacle-avoidance routine:** to be documented in phase 2.
 
 ## 💻 Code Overview
-The robot: waits for a start button → drives forward with the steering servo held straight (centered/90°), with no wall-following correction → watches the front ultrasonic sensor to detect when it's approaching the front wall → compares the side distances to decide turn direction → executes a timed 90° turn via the servo → counts turns → repeats until the required laps are done → makes a final short move and stops.
+The robot: waits for a start button → drives forward with the steering servo held straight (90°), with no wall-following correction → watches the front sensor to detect the front wall → checks side distances to decide turn direction → executes a timed 90° turn via the servo → counts turns → repeats until the required laps are done → makes a final short move and stops.
 
 **Key logic:**
 - A simple **state machine** (`DRIVE_STRAIGHT`, `TURNING_LEFT`, `TURNING_RIGHT`, `FINISHED`) organizes behavior.
-- The robot drives straight (no PD/wall-following correction) until the front sensor reads a distance below `FRONT_TURN_TRIGGER_MM`, signaling that the front wall is close.
+- The robot drives straight until the front sensor reads a distance below `FRONT_TURN_TRIGGER_MM`, signaling that the front wall is close.
 - Turns are currently **time-based** (`turn90TimeMs`), which is simple but can vary with battery level, traction, and surface — a future version could add wheel encoders or an IMU for more precise turning.
-- Tunable parameters: servo straight/turn angles, `baseSpeedPercent`, `turnSpeedPercent`, `turn90TimeMs`, `FRONT_TURN_TRIGGER_MM`, `TURN_RATIO`, final-stop timing.
+- Tunable parameters: servo angles, `baseSpeedPercent`, `turnSpeedPercent`, `turn90TimeMs`, `FRONT_TURN_TRIGGER_MM`, `TURN_RATIO`, final-stop timing.
 
 ## ⚙️ Electromechanical Components
 - **Power:** 3S 18650 Li-ion battery pack (three 3.7V, 2800 mAh 18650 cells in series) → L298N (+12V/GND) → onboard 5V regulator powers a breadboard distributing to Arduino, sensors, etc. Includes a power switch and a start button.
@@ -42,15 +42,13 @@ The robot: waits for a start button → drives forward with the steering servo h
 - **Drive:** LEGO EV3 Large Motor, with a built-in rotation sensor.
 - **Steering:** MG996R digital servo (4.8–7.2V, PWM control).
 - **Motor driver:** L298N Dual H-Bridge — also supplies regulated 5V.
-- **Chassis:** custom-designed, mostly 3D-printed (4 wheels, 8 structural supports, mounting screws), enabling optimized component placement and easy maintenance.
+- **Chassis:** custom-designed, mostly 3D-printed (4 wheels, 8 supports, mounting screws), optimizing component placement and easy maintenance.
 
 📸 [Component gallery](electromechanical-components/)
 
 ## ⚡ Power Management
-The 3S 18650 battery pack (three 3.7V, 2800 mAh cells in series) feeds the L298N driver (+12V/GND), which also outputs a regulated 5V used to power a central breadboard supplying the Arduino, Pixy2 camera, servo, and ultrasonic sensors. A main power switch disconnects the battery when not in use, and a separate start button lets the robot stay powered while delaying the autonomous program until the official start signal.
-
+The 3S 18650 pack feeds the L298N (+12V/GND), whose regulated 5V output powers a central breadboard supplying the Arduino, Pixy2 camera, servo and ultrasonic sensors. A main power switch disconnects the battery when idle; a separate start button delays the autonomous program until the official start signal.
 ## 🫶🏽 Acknowledgements
-Thanks to:
 - **Colegio San Agustín La Chorrera** — guidance and workspace.
 - **Gabriel Rodríguez (Banistmo)** — technical guidance, programming support and feedback.
 - **TekBot Lab** — help with robot design and technical feedback.
