@@ -2,7 +2,8 @@
 For the WRO Future Engineers challenge, we built an autonomous robot that combines computer vision, distance sensing, and precise motion control. A **Pixy2 camera** detects colored markers along the track: green means turn left, red means turn right. Three **HC-SR04 ultrasonic sensors** on the front give the robot environmental awareness, letting it detect the front wall and nearby obstacles. Together, vision and ultrasonic sensing let the robot follow navigation rules while avoiding collisions, reliably and adaptively.
 
 ## 👥 Our Team
-<img width="640" height="480" alt="27fb941c-3ae1-49fe-bac8-5fe324d17b53" src="https://github.com/user-attachments/assets/5fb33422-ca9d-4371-9d21-e53eff33bb84" />
+<center><img width="640" height="480" alt="27fb941c-3ae1-49fe-bac8-5fe324d17b53" src="https://github.com/user-attachments/assets/5fb33422-ca9d-4371-9d21-e53eff33bb84" /></center>
+
 | Photo | Name | Role |
 |:---:|---|---|
 | _(add photo)_ | Ernesto Victoria | Coach |
