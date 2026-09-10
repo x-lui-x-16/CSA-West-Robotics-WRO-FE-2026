@@ -1,24 +1,25 @@
 ## Hardware Architecture
 The robot is built around an **Arduino Mega 2560 R3** as the main controller and follows a **rear-wheel-drive configuration with Ackermann steering**.  
-Forward motion is provided by a **12V DC rear motor** driven through an **L298N motor driver**, while steering is controlled by an **MG996R servo motor** mounted on the front axle.  
+Forward motion is provided by a **LEGO EV3 Large Motor** driven through an **L298N motor driver**, while steering is controlled by an **MG996R servo motor** mounted on the front axle.  
 Three **HC-SR04 ultrasonic sensors** are used to measure distances to the front, left, and right sides of the robot, allowing it to navigate corridors and evaluate turns.  
 The prototype also includes a **start push button**, a **power indicator LED**, and a **main on/off switch** integrated into the battery supply line.
 
-At the current stage of development, the robot is powered by a **3-cell 18650 battery pack**, with the **L298N motor driver acting as the main power entry point**.  
+At the current stage of development, the robot is powered by a **3-cell (3S) 18650 battery pack**, with the **L298N motor driver acting as the main power entry point**.  
 Low-voltage devices such as the Arduino, ultrasonic sensors, servo, and LED are supplied through the **5V rail distributed from the L298N regulator to the breadboard**.
 
 ---
 
 ## Power Distribution
 The robot uses **three 18650 lithium-ion cells** arranged as a **3-cell series battery pack**.  
-This battery pack supplies the motor driver directly and, through the L298N’s onboard regulator, also powers the low-voltage electronics.
+This battery pack supplies the motor driver directly and, through the L298N's onboard regulator, also powers the low-voltage electronics.
 
 ### Battery configuration
 - **Battery type:** 18650 Li-ion
 - **Number of cells:** 3
 - **Nominal voltage per cell:** 3.7 V
 - **Fully charged voltage per cell:** ~4.1 V
-- **Total pack voltage:** approximately **11.1 V to 12.6 V**
+- **Total pack voltage:** approximately **11.1 V to 12.3 V**
+- **Capacity per cell:** 2800 mAh
 
 ### Main power path
 ```text
@@ -40,21 +41,21 @@ From the breadboard rails, power is distributed to:
 - Power indicator LED
 
 ## Wiring Overview
-This section describes the robot’s wiring as a functional connection diagram in text form, showing how power and signals flow between the main components.
+This section describes the robot's wiring as a functional connection diagram in text form, showing how power and signals flow between the main components.
 ### Global power flow
 ```text
-4x 18650 Battery Pack (+)
+3x 18650 Battery Pack (+)
         ↓
      On/Off Switch
         ↓
    L298N +12V terminal
 
-4x 18650 Battery Pack (-)
+3x 18650 Battery Pack (-)
         ↓
     L298N GND
 ```
 The L298N then performs two main tasks:
-- Drives the rear DC motor through its output terminals.
+- Drives the rear drive motor through its output terminals.
 - Supplies 5V to the breadboard rail, which powers the Arduino and the rest of the low-voltage electronics.
 
 ## Arduino Mega 2560 Connections
@@ -79,7 +80,7 @@ Arduino Mega 2560
 └── GND → Breadboard GND rail
 ```
 ## Rear Drive System
-The robot uses a single rear DC motor for propulsion.
+The robot uses a single LEGO EV3 Large Motor for propulsion.
 This motor is not connected directly to the Arduino. Instead, it is controlled through one channel of the L298N motor driver.
 
 Control signal path
@@ -92,8 +93,8 @@ Arduino D3  → L298N IN2
 - IN1 and IN2 control the rotation direction of the motor.
 Rear motor output path
 ```text
-L298N OUT1 → Rear DC Motor terminal 1
-L298N OUT2 → Rear DC Motor terminal 2
+L298N OUT1 → Rear Motor terminal 1
+L298N OUT2 → Rear Motor terminal 2
 ```
 ## Steering System
 The front steering mechanism is controlled by an MG996R servo motor connected to the Arduino.
@@ -122,7 +123,7 @@ Left HC-SR04 GND  → Breadboard GND rail
 Left HC-SR04 TRIG → Arduino D10
 Left HC-SR04 ECHO → Arduino D11
 ```
-The left sensor measures the distance between the robot and the left wall and is used for centering and navigation corrections.
+The left sensor measures the distance between the robot and the left wall and is used to help decide the turn direction.
 ### Right ultrasonic sensor
 ```text
 Right HC-SR04 VCC  → Breadboard 5V rail
@@ -130,7 +131,7 @@ Right HC-SR04 GND  → Breadboard GND rail
 Right HC-SR04 TRIG → Arduino D12
 Right HC-SR04 ECHO → Arduino D13
 ```
-The right sensor measures the distance between the robot and the right wall and works together with the left sensor to keep the robot centered inside the corridor.
+The right sensor measures the distance between the robot and the right wall and works together with the left sensor to decide which way to turn.
 
 ## Start Button and User Input
 The robot includes a push button that is used to manually start the program.
@@ -154,7 +155,7 @@ LED cathode (-) → Breadboard GND rail
 Whenever the breadboard 5V rail is powered, the LED turns on and indicates that the low-voltage electronics are energized.
 
 ## Connection Tables
-### Arduino Mega 2540 Pin Map
+### Arduino Mega 2560 Pin Map
 | Arduino Pin | Connected Component | Function |
 | --- | --- | --- |
 | D2 | MG996R Servo Signal | Steering control |
@@ -175,8 +176,8 @@ Whenever the breadboard 5V rail is powered, the LED turns on and indicates that 
 | ENA | Arduino D5 | Rear motor PWM speed control |
 | IN1 | Arduino D4 | Rear motor direction control |
 | IN2 | Arduino D3 | Rear motor direction control |
-| OUT1 | Rear DC Motor Terminal 1 | Motor output |
-| OUT2 | Rear DC Motor Terminal 2 | Motor output |
+| OUT1 | Rear Motor Terminal 1 | Motor output |
+| OUT2 | Rear Motor Terminal 2 | Motor output |
 | +12V | Battery Pack Positive Through Switch | Main motor supply |
 | GND | Battery Negative / Breadboard Ground | Common ground |
 | +5V | Breadboard 5V Rail | Low-Voltage power distribution |
@@ -223,7 +224,7 @@ Without a common ground reference, the control signals from the Arduino may not 
 
 ## Electrical Design Notes
 1. Rear motor connection
-The rear DC motor must be connected to the OUT1 and OUT2 terminals of the L298N.
+The rear drive motor must be connected to the OUT1 and OUT2 terminals of the L298N.
 It should not be connected directly to the Arduino or to the control pins IN1 and IN2.
 2. Servo power considerations
 The MG996R servo can draw a significant amount of current, especially under load.
@@ -247,13 +248,13 @@ Additional components such as the Pixy2 camera, communication interfaces, or oth
 
 ## Hardware Summary
 - **Main controller:** Arduino Mega 2560 R3  
-- **Drive motor:** Greartisan DC 12V 300RPM motor  
+- **Drive motor:** LEGO EV3 Large Motor  
 - **Steering actuator:** MG996R servo  
 - **Motor driver:** L298N  
 - **Distance sensors:** 3 × HC-SR04 ultrasonic sensors  
 - **User controls:** Push button + on/off switch  
 - **Power indicator:** Red LED with 1 kΩ resistor  
-- **Power source:** 4 × 18650 Li-ion cells in series
+- **Power source:** 3 × 18650 Li-ion cells in series (3.7V, 2800 mAh each)
 
 ## Future Hardware Integration
 - Pixy2 camera integration
