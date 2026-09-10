@@ -66,7 +66,7 @@ Its compact size, processing capability, and reliable I/O communication make it 
 
 The robot uses a Pixy2 Camera to detect the colored obstacle markers placed around the track.
 
-A custom vision algorithm allows the camera to distinguish between red and green objects. Once a color is identified, the corresponding information is transmitted to the Arduino Nano 33 IoT, which decides whether the robot should turn left or right according to the competition rules.
+A custom vision algorithm allows the camera to distinguish between red and green objects. Once a color is identified, the corresponding information is transmitted to the Arduino Mega 2560 R3, which decides whether the robot should turn left or right according to the competition rules.
 
 #### Communication Protocol:
 
@@ -94,7 +94,7 @@ The sensor arrangement consists of:
 - Left ultrasonic sensor
 - Center ultrasonic sensor
 - Right ultrasonic sensor
-- 
+
 Together, these sensors provide the robot with a wider field of view, enabling more accurate obstacle avoidance and wall-following behavior.
 
 [📷 Ultrasonic Sensors](electromechanical-components/ultrasonic-sensors/)
@@ -158,7 +158,7 @@ The electrical connections between all components are summarized in the wiring d
 ### 📸 Component Gallery
 
 The following folder shows images of all the main electromechanical components used in the robot.
-- [Electromechanical Components](elechtromechanical-components/)
+- [Electromechanical Components](electromechanical-components/)
 📸 [Component gallery](electromechanical-components/)
 
 ## ⚡ Power Management
