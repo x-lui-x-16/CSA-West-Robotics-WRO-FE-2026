@@ -1,7 +1,7 @@
 # 💻 Source Code
 This directory contains all the software developed for the robot.
 
-The code is written for the Arduino Nano 33 IoT and manages all the robot’s autonomous behavior, including sensor processing, decision-making, and motor control.
+The code is written for the Arduino Mega 2560 R3 and manages all the robot's autonomous behavior, including sensor processing, decision-making, and motor control.
 
 ## 📌 Features
 - Real-time sensor data processing
