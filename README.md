@@ -13,6 +13,7 @@ For the WRO Future Engineers challenge, we built an autonomous robot that combin
 
 ## 🛠️ Building Instructions
 - Chassis: mostly 3D-printed, with some supports from the [YFROBOT Kit Chassis](https://yfrobot.com/products/steering-gear-robot).
+- 3D Models: [printable STL files](models/)
 - Electronics: [circuit diagrams](schemes/)
 - Code: [Arduino source code](src/)
 
